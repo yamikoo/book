@@ -5,6 +5,7 @@ WORKDIR /app
 RUN apk update && \
     apk add git && \
     npm install -g npm && \
+    npm install -g @aws-amplify/cli && \
     npm install -g @vue/cli && \
     npm install -g @vue/cli-init && \
     npm install -g create-nuxt-app

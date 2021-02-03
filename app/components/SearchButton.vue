@@ -5,6 +5,12 @@
   </form>
 </template>
 
+<style scoped>
+.form-control {
+  width: 300px;
+}
+</style>
+
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import axios from 'axios';

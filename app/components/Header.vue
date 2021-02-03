@@ -14,7 +14,7 @@
           <a class="nav-link" href="#">新機能①</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">新機能②</a>
+          <amplify-sign-out></amplify-sign-out>
         </li>
       </ul>
       <SearchButton />

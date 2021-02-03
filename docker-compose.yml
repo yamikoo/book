@@ -49,8 +49,12 @@ networks:
 #docker-compose run --rm nuxt npm install sqlite3 --save
 #docker-compose run --rm nuxt npm install aws-sdk --save
 #docker-compose run --rm nuxt npm install node-dynamodb-orm --save
+#docker-compose run --rm nuxt npm install -g @aws-amplify/cli
+#docker-compose run --rm nuxt amplify configure
 #aws dynamodb list-tables --endpoint-url http://localhost:8000
-
+#npm install aws-amplify @aws-amplify/ui-vue --dave
+#AKIA5CWRFUVRUEPRWWSZ
+#VZtGFM4TBMNOmSWAyP+7q/JodpYI1BO8ajONiwyb
 #npm 6.14.11
 #nod 12.20.1
 
