@@ -2,6 +2,9 @@ export const state = () => ({
   searchText: '',
   searchList: [],
   searched: false,
+  viewDetail: false,
+  selectBook: {},
+  bookList: [],
   bookRegisted: false,
 });
 
@@ -18,6 +21,15 @@ export const getters = {
   bookRegisted: state => {
     return state.bookRegisted;
   },
+  bookList: state => {
+    return state.bookList;
+  },
+  selectBook: state => {
+    return state.selectBook;
+  },
+  viewDetail: state => {
+    return state.viewDetail;
+  },
 };
 
 export const actions = {
@@ -33,6 +45,15 @@ export const actions = {
   setBookRegisted({ commit }, bool) {
     commit('setBookRegisted', bool);
   },
+  setBookList({ commit }, books) {
+    commit('setBookList', books);
+  },
+  setViewDetail({ commit }, bool) {
+    commit('setViewDetail', bool);
+  },
+  setSelectBook({ commit }, book) {
+    commit('setSelectBook', book);
+  },
 };
 
 export const mutations = {
@@ -47,6 +68,15 @@ export const mutations = {
   },
   setBookRegisted(state, bool) {
     state.bookRegisted = bool;
+  },
+  setBookList(state, books) {
+    state.bookList = books;
+  },
+  setViewDetail(state, bool) {
+    state.viewDetail = bool;
+  },
+  setSelectBook(state, book) {
+    state.selectBook = book;
   },
 };
 

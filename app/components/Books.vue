@@ -1,52 +1,27 @@
 <template>
-  <table class="table">
-    <thead>
-      <tr>
-        <th style="width: 15%">画像</th>
-        <th style="width: 15%">表題</th>
-        <th style="width: 35%">説明</th>
-        <th style="width: 15%">遷移</th>
-        <th style="width: 10%"></th>
-        <th style="width: 10%"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="item in items">
-        <td><img :src="item.image" /></td>
-        <td style="word-break: break-all">{{ item.title }}</td>
-        <td style="word-break: break-all">{{ item.description }}</td>
-        <td style="word-break: break-all">
-          <a :href="item.link">{{ item.link }}</a>
-        </td>
-        <td><button class="button button--yet">感想</button></td>
-        <td><button class="button button--delete" @click="deleteBook(item.book_id)">削除</button></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row mb-2">
+    <template v-for="(item, index) in bookList">
+      <book-card :item="item" :index="index" :kind="'book'"></book-card>
+    </template>
+  </div>
 </template>
 
 <script lang="ts">
+import { mapGetters, mapActions } from 'vuex';
 import axios from 'axios';
+import BookCard from './BookCard.vue';
 
 export default {
-  props: {},
-  data: function () {
-    return {
-      apidata: null,
-      items: [],
-      form: {
-        title: '',
-      },
-    };
-  },
-  created: async function () {},
+  components: { BookCard },
   mounted: async function () {
-    await this.getBooks();
+    const res = await this.getBooks();
+    this.setBookList(res);
   },
   methods: {
+    ...mapActions('common', ['setBookList']),
     getBooks: async function () {
       const endpoint = 'http://localhost:3333/api/books';
-      this.apidata = await axios
+      const apidata = await axios
         .get(`${endpoint}`)
         .then((response) => {
           return response.data;
@@ -55,8 +30,7 @@ export default {
           console.log(error);
           return [];
         });
-      this.items = this.apidata.Items.map((item) => {
-        //const row = JSON.parse(item.detail);
+      return apidata.Items.map((item) => {
         const row = item.detail;
         return {
           book_id: item.cname,
@@ -66,26 +40,10 @@ export default {
           image: row.image ? row.image : '',
         };
       });
-      console.log(this.items);
     },
-    deleteBook: async function (bookID) {
-      const endpoint = 'http://localhost:3333/api/books';
-      this.apidata = await axios
-        .delete(`${endpoint}`, { data: { book_id: bookID } })
-        .then((response) => {
-          return response.data;
-        })
-        .catch((error) => {
-          console.log(error);
-          return [];
-        });
-      this.items = this.items.filter((item) => {
-        return item.book_id != bookID;
-      });
-      console.log(this.apidata);
-    },
+  },
+  computed: {
+    ...mapGetters('common', ['bookList']),
   },
 };
 </script>
-
-<style></style>

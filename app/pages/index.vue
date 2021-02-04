@@ -25,6 +25,7 @@ import { mapGetters, mapActions } from 'vuex';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import Books from '@/components/Books.vue';
 import List from '@/components/List.vue';
+import Detail from '@/components/Detail.vue';
 
 export default {
   data: function () {
@@ -42,10 +43,10 @@ export default {
     });
   },
   methods: {
-    ...mapActions('common', ['setBookRegisted', 'setSearched']),
+    ...mapActions('common', ['setBookRegisted', 'setSearched', 'setViewDetail']),
   },
   computed: {
-    ...mapGetters('common', ['searched', 'bookRegisted']),
+    ...mapGetters('common', ['searched', 'bookRegisted', 'viewDetail']),
   },
   watch: {
     user: function () {
@@ -58,6 +59,11 @@ export default {
     bookRegisted: function () {
       this.viewComponent = this.bookRegisted ? Books : this.viewComponent;
       this.setBookRegisted(false);
+    },
+    viewDetail: function () {
+      console.log(this.viewDetail);
+      this.viewComponent = this.viewDetail ? Detail : this.viewComponent;
+      this.setViewDetail(false);
     },
   },
   beforeDestroy() {
