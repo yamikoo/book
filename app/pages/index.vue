@@ -26,6 +26,7 @@ import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import Books from '@/components/Books.vue';
 import List from '@/components/List.vue';
 import Detail from '@/components/Detail.vue';
+import Music from '@/components/Music.vue';
 
 export default {
   data: function () {
@@ -46,9 +47,16 @@ export default {
     ...mapActions('common', ['setBookRegisted', 'setSearched', 'setViewDetail']),
   },
   computed: {
-    ...mapGetters('common', ['searched', 'bookRegisted', 'viewDetail']),
+    ...mapGetters('common', ['searched', 'bookRegisted', 'viewDetail', 'storeState']),
   },
   watch: {
+    storeState: function () {
+      switch (this.storeState) {
+        case 'music':
+          this.viewComponent = Music;
+          break;
+      }
+    },
     user: function () {
       console.log(this.user);
     },

@@ -9,7 +9,7 @@
         <div class="mb-1 text-muted">2021/02</div>
         <p class="card-text mb-auto">{{ item.description }}</p>
         <div v-if="kind == 'book'">
-          <button class="btn btn-success" @click="selectBook()">詳細</button>
+          <button class="btn btn-success" @click="select()">詳細</button>
           <button class="btn btn-danger" @click="deleteBook(item.book_id)">削除(詳細引越予定)</button>
         </div>
         <div v-else-if="kind == 'search'">
@@ -54,7 +54,7 @@ export default {
     kind: String,
   },
   methods: {
-    selectBook: function () {
+    select: function () {
       this.setSelectBook(this.item);
       this.setViewDetail(true);
     },

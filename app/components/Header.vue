@@ -11,13 +11,11 @@
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">新機能①</a>
-        </li>
-        <li class="nav-item">
           <amplify-sign-out></amplify-sign-out>
         </li>
       </ul>
       <SearchButton />
+      <MusicSearchButton />
     </div>
   </nav>
 </template>

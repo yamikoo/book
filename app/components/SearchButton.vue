@@ -7,7 +7,7 @@
 
 <style scoped>
 .form-control {
-  width: 300px;
+  width: 200px;
 }
 </style>
 

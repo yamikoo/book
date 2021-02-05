@@ -1,4 +1,5 @@
 export const state = () => ({
+  storeState: '',
   searchText: '',
   searchList: [],
   searched: false,
@@ -6,9 +7,13 @@ export const state = () => ({
   selectBook: {},
   bookList: [],
   bookRegisted: false,
+  mainComponent: null,
 });
 
 export const getters = {
+  storeState: state => {
+    return state.storeState;
+  },
   searchList: state => {
     return state.searchList;
   },
@@ -30,9 +35,15 @@ export const getters = {
   viewDetail: state => {
     return state.viewDetail;
   },
+  mainComponent: state => {
+    return state.mainComponent;
+  },
 };
 
 export const actions = {
+  setStoreState({ commit }, state) {
+    commit('setStoreState', state);
+  },
   setSearchList({ commit }, list) {
     commit('setSearchList', list);
   },
@@ -54,9 +65,15 @@ export const actions = {
   setSelectBook({ commit }, book) {
     commit('setSelectBook', book);
   },
+  setMainComponent({ commit }, component) {
+    commit('setMainComponent', component);
+  },
 };
 
 export const mutations = {
+  setStoreState(state, data) {
+    state.storeState = data;
+  },
   setSearchList(state, list) {
     state.searchList = list;
   },
@@ -77,6 +94,9 @@ export const mutations = {
   },
   setSelectBook(state, book) {
     state.selectBook = book;
+  },
+  setMainComponent(state, component) {
+    state.mainComponent = component;
   },
 };
 
