@@ -10,3 +10,28 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: graphql
+  music:
+    schemaPath: graphql/schema.json
+    includes:
+      - 'Yes'
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: graphql
+  todo:
+    schemaPath: graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: graphql
+extensions:
+  amplify:
+    version: 3

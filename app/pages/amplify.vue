@@ -30,8 +30,9 @@ export default {
   },
   methods: {
     async createTodo() {
-      const { name, description } = this;
+      let { name, description } = this;
       if (!name || !description) return false;
+      description = JSON.stringify({ description: description });
       const todo = { name, description };
       await API.graphql({
         query: createTodo,

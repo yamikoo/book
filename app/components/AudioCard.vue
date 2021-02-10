@@ -11,6 +11,12 @@
         <div>
           <audio :src="item.previewUrl" controls></audio>
         </div>
+        <div v-if="'id' in item">
+          <button class="button button--yet" @click="del(item.id)">削除</button>
+        </div>
+        <div v-else>
+          <button class="button button--yet" @click="add(index)">登録</button>
+        </div>
       </div>
       <img class="card-img-right flex-auto d-none d-lg-block" :src="item.artworkUrl100" style="width: 200px; height: 200px" />
     </div>
@@ -39,13 +45,45 @@
 
 <script lang="ts">
 import { mapGetters, mapActions } from 'vuex';
+import { API } from 'aws-amplify';
+import { createTodo, deleteTodo } from '../graphql/mutations';
+import { listTodos } from '../graphql/queries';
 
 export default {
   props: {
     item: Object,
+    index: Number,
+    kind: String,
   },
   methods: {
     ...mapActions('common', ['setBookList', 'setSelectBook', 'setViewDetail']),
+    add: async function (index) {
+      if (this.bookList.indexOf(index) == false) return;
+      const name = this.bookList[index].artistName + '__' + this.bookList[index].trackName;
+      const description = JSON.stringify({
+        artistName: this.bookList[index].artistName,
+        trackViewUrl: this.bookList[index].trackViewUrl,
+        trackName: this.bookList[index].trackName,
+        releaseDate: this.bookList[index].releaseDate,
+        trackPrice: this.bookList[index].trackPrice,
+        previewUrl: this.bookList[index].previewUrl,
+        artworkUrl100: this.bookList[index].artworkUrl100,
+      });
+      const todo = { name, description };
+      await API.graphql({
+        query: createTodo,
+        variables: { input: todo },
+      });
+      location.reload();
+    },
+    del: async function (id) {
+      const todo = { id };
+      await API.graphql({
+        query: deleteTodo,
+        variables: { input: todo },
+      });
+      location.reload();
+    },
   },
   computed: {
     ...mapGetters('common', ['bookList', 'viewDetail']),
