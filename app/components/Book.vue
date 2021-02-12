@@ -1,32 +1,23 @@
 <template>
-  <div class="col-md-6">
-    <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-      <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-success">[技術書]</strong>
-        <h3 class="mb-0">
-          <a class="text-dark" :href="item.link">{{ item.title }}</a>
-        </h3>
-        <div class="mb-1 text-muted">2021/02</div>
-        <p class="card-text mb-auto">{{ item.description }}</p>
-        <div>
-          <regist-button :index="index"></regist-button>
-        </div>
-      </div>
-      <img class="card-img-right flex-auto d-none d-lg-block" :src="item.image" style="width: 200px; height: 250px" />
+  <div class="col mt-5 book-part">
+    <div class="flex-row mx-4" @click="select()">
+      <img class="book-img flex-auto d-none d-lg-block mx-auto mb-2" :src="item.image" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.text-dark {
-  font-size: 20px;
+.book-part{
+  border-style: solid;
+  border-width: 0px 0px 30px 0px;
+  border-image: url(../static/image/wood-texture_00001.jpg) 30;
+  box-shadow: inset 0px -15px rgb(41, 10, 0);
 }
-.card-text {
-  font-size: 14px;
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+.book-img{
+  box-shadow: 10px 0px 7px rgba(0,0,0,0.5);
+	width: 150px;
+	height: 225px;
+	cursor: pointer;
 }
 </style>
 

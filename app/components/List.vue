@@ -1,7 +1,7 @@
 <template>
   <div class="row mb-2">
     <template v-for="(item, index) in searchList">
-      <book-card :item="item" :index="index" :kind="'search'"></book-card>
+      <book-card :item="item" :index="index"></book-card>
     </template>
   </div>
 </template>

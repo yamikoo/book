@@ -1,7 +1,7 @@
 <template>
-  <div class="row mb-2">
+  <div class="row mb-2 book-shelf">
     <template v-for="(item, index) in bookList">
-      <book-card :item="item" :index="index" :kind="'book'"></book-card>
+      <book :item="item" :index="index"></book>
     </template>
     <template v-for="(item, index) in musics">
       <audio-card :item="item" :index="index" :kind="'audio'"></audio-card>
@@ -9,6 +9,15 @@
   </div>
 </template>
 
+<style scoped>
+.book-shelf{
+  background-image: url(../static/image/wood-texture_00018.jpg);
+  border-style: solid;
+  border-width: 20px 20px 0px 20px;
+  border-image: url(../static/image/wood-texture_00001.jpg) 30;
+  box-shadow: inset 20px 0px rgb(41, 10, 0);
+}
+</style>
 <script lang="ts">
 import { mapGetters, mapActions } from 'vuex';
 import axios from 'axios';
@@ -17,9 +26,10 @@ import { API } from 'aws-amplify';
 import { createTodo } from '../graphql/mutations';
 import { listTodos } from '../graphql/queries';
 import AudioCard from './AudioCard.vue';
+import Book from './Book.vue';
 
 export default {
-  components: { BookCard, AudioCard },
+  components: { BookCard, AudioCard, Book },
   data() {
     return {
       musics: [],
